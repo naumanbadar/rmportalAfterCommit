@@ -31,6 +31,7 @@ public interface RestClient {
 
 	@GET
 	@Path("/rm/monitoring")
+	@Produces("application/json")
 	public ClientResponse<InputStream> monitor(@HeaderParam("sessionid") String sessionId);
 
 }

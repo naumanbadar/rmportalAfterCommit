@@ -5,6 +5,7 @@ package org.ow2.proactive_grid_cloud_portal.client.presenter;
 
 import org.ow2.proactive_grid_cloud_portal.client.ResourceManagerServiceAsync;
 import org.ow2.proactive_grid_cloud_portal.client.presenter.ResourceManagerPresenter.Display;
+import org.ow2.proactive_grid_cloud_portal.shared.state.MonitoredEvents;
 import org.ow2.proactive_grid_cloud_portal.shared.state.ResourceManagerState;
 
 import com.google.gwt.event.shared.HandlerManager;
@@ -53,7 +54,20 @@ public class MonitorPresenterImpl implements MonitorPresenter {
 
 	@Override
 	public void monitorRM() {
-		// TODO Auto-generated method stub
+		rpcService.getMonitoredEventsFromRestService(sessionId, new AsyncCallback<MonitoredEvents>() {
+			
+			@Override
+			public void onSuccess(MonitoredEvents result) {
+				display.setMessage("monitored events returned successfully");
+			}
+			
+			@Override
+			public void onFailure(Throwable caught) {
+				display.setMessage("error getting monitored events");
+				
+			}
+		});
+		
 		
 	}
 

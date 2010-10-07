@@ -133,28 +133,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 				}
 				presenter = new ResourceManagerPresenterImpl(rpcService, eventBus, new ResourceManagerView(), sessionId);
 			} else if (token.equals("test")) {
-				// used for testing how the jobs table look
-				// presenter = new JobPresenterImpl(rpcService, eventBus, new
-				// JobsView<Job>(), JobsRowDefinitionsImpl.getInstance());
-				// presenter = new SchedulerOperationPresenterImpl(rpcService,
-				// eventBus, new SchedulerOperationView());
-				// presenter = new JobVisualizationPresenterImpl(rpcService,
-				// eventBus, new JobVisualizationView());
-				// presenter = new OperationPresenterImpl(rpcService, eventBus,
-				// new OperationsView());
-				/*
-				 * JobTableView jtv = new JobTableView(createJobs(10));
-				 * 
-				 * //presenter = new JobTablePresenterImpl(rpcService, eventBus,
-				 * jtv); PagingScrollTable<Job> pagingScrollTable =
-				 * jtv.getScrollTable(); pagingScrollTable.gotoPage(0, true);
-				 * pagingScrollTable.setHeight("100%");
-				 * pagingScrollTable.setWidth("100%");
-				 * pagingScrollTable.setPageSize(200);
-				 * pagingScrollTable.setTitle("scroll");
-				 * RootLayoutPanel.get().add(pagingScrollTable);
-				 */
-
+				
 				presenter = new MonitorPresenterImpl(rpcService, eventBus, new MonitorView(), "1");
 
 			}

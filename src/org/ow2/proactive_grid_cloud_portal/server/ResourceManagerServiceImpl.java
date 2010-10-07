@@ -98,13 +98,6 @@ public class ResourceManagerServiceImpl extends RemoteServiceServlet implements 
 				case OK:
 					user.setSessionId(response);
 					ResourceManagerServiceImpl.users.put(response, user);
-
-					// if
-					// (Properties.SERVER_JOBS_SYNCHRONIZATION.getValueAsBoolean())
-					// {
-					// ResourceManagerServiceImpl.updates.put(response, new
-					// JobBagImpl());
-					// }
 					break;
 				default:
 					throw new LoginException(user, "[status = " + status + ", response = " + response + "]");
