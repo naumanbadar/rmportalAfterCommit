@@ -15,8 +15,7 @@ public class MonitoredEvents implements Serializable {
 	private ArrayList<NodeEvents> nodeEvents;
 	private ArrayList<NodeSource> nodeSources;
 
-	public MonitoredEvents() {
-	}
+	public MonitoredEvents() {}
 
 	/**
 	 * @param nodeEvents
