@@ -3,6 +3,7 @@ package org.ow2.proactive_grid_cloud_portal.client;
 import org.ow2.proactive_grid_cloud_portal.shared.User;
 import org.ow2.proactive_grid_cloud_portal.shared.exception.LoginException;
 import org.ow2.proactive_grid_cloud_portal.shared.exception.LogoutException;
+import org.ow2.proactive_grid_cloud_portal.shared.state.MonitoredEvents;
 import org.ow2.proactive_grid_cloud_portal.shared.state.ResourceManagerState;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -41,4 +42,6 @@ public interface ResourceManagerService extends RemoteService {
 	
 
 	ResourceManagerState getResourceManagerStateFromRestService(String sessionId) throws Exception;
+	
+	MonitoredEvents getMonitoredEventsFromRestService(String sessionId) throws Exception;
 }

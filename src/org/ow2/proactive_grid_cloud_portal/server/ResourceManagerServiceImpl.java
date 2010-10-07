@@ -207,6 +207,42 @@ public class ResourceManagerServiceImpl extends RemoteServiceServlet implements 
 		}
 		return state;
 	}
+	public MonitoredEvents getMonitoredEventsFromRestService(String sessionId) throws Exception {
+		MonitoredEvents events = null;
+		
+		synchronized (client) {
+			ClientResponse<InputStream> clientResponse = client.monitor(sessionId);
+			Status status = clientResponse.getResponseStatus();
+			InputStream response = clientResponse.getEntity();
+			
+			try {
+				switch (status) {
+				case OK:
+					if (response != null) {
+						events = getMonitoredEventsFromJson((convertToString(response)));
+					}
+					break;
+				default:
+					throw new Exception("Cant get monitoredEvents from rest");
+					// /TODO: create appropriate exception
+				}
+				
+			} catch (Exception e) {
+				// throw new GettingJobException();
+				Log.info(e.getMessage());
+			} finally {
+				clientResponse.releaseConnection();
+				if (response != null) {
+					try {
+						response.close();
+					} catch (IOException e) {
+						// throw new GettingJobException();
+					}
+				}
+			}
+		}
+		return events;
+	}
 
 	private ResourceManagerState parseState(String jsonString) throws JSONException {
 

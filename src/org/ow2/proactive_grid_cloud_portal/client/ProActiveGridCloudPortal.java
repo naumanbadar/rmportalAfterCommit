@@ -17,13 +17,6 @@ public class ProActiveGridCloudPortal implements EntryPoint {
 		ResourceManagerServiceAsync rpcService = GWT.create(ResourceManagerService.class);
 	    HandlerManager eventBus = new HandlerManager(null);
 	    AppController appViewer = new AppController(rpcService, eventBus);
-	    //RootPanel.get().setStyleName("body");
-	    //RootPanel.get("widgetContainer").setHeight((Window.getClientHeight()-100)+"px");
-	    
-	    //RootPanel rp = RootPanel.get("widgetContainer");
-	    
-	    //the RootLayoutPanel is used (instead of using the RootPanel) because the widgets
-	    //are arranged in panels
 	    appViewer.go( RootLayoutPanel.get());
 
 	}
