@@ -36,17 +36,6 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 @SuppressWarnings("serial")
 public class ResourceManagerServiceImpl extends RemoteServiceServlet implements ResourceManagerService {
 
-	// /**
-	// * Map of all jobs. The key String is the job Id
-	// */
-	// private static JobBag jobs;
-	//
-	// /**
-	// * Map of jobs to be updated to the user identified by his session id. The
-	// key String is the session Id
-	// */
-	// private static Map<String, JobBag> updates;
-
 	/**
 	 * Map of connected users. The key String is the session Id
 	 */
@@ -156,10 +145,6 @@ public class ResourceManagerServiceImpl extends RemoteServiceServlet implements 
 
 	public User getUser(String sessionId) {
 
-		// Should be placed somewhere else.
-		// if (Properties.SERVER_JOBS_SYNCHRONIZATION.getValueAsBoolean())
-		// ResourceManagerServiceImpl.updates.get(sessionId).empty();
-
 		return ResourceManagerServiceImpl.users.get(sessionId);
 	}
 
@@ -264,9 +249,14 @@ public class ResourceManagerServiceImpl extends RemoteServiceServlet implements 
 			NodeEvents nodeEvent = parseNodeEvents(jsonNodeEventsArray.getJSONObject(i));
 			monitoredEvents.getNodeEvents().add(nodeEvent);
 		}
+		for (int i = 0; i < jsonNodeSourceArray.length(); i++) {
+			NodeSource sourceEvent = parseNodeSource(jsonNodeSourceArray.getJSONObject(i));
+			monitoredEvents.getNodeSources().add(sourceEvent);
+		}
 		
 		return monitoredEvents;
 	}
+	
 	public static NodeEvents parseNodeEvents(JSONObject jsonNodeEvents) throws JSONException {
 
 		String hostName = jsonNodeEvents.getString("hostName");
